@@ -1693,30 +1693,30 @@ summary {
 <h3>Question 1</h3>
 <p>First, you’ll need to get comfortable searching up function help pages. All you need to do is throw a <code>?</code> in front of the function you want to learn more about.</p>
 <pre class="r"><code>?rnorm</code></pre>
-<p>So, what does <code>rnorm(100)</code> do? It randomly draws 100 numbers from a normal distribution (got that from the help page)</p>
+<p>There’s some real good documentation online too if the manuals aren’t clear. So, what does <code>rnorm(100)</code> do? It randomly draws 100 numbers from a normal distribution (got that from the help page).</p>
 </div>
 <div id="question-2" class="section level3">
 <h3>Question 2</h3>
 <p>Here are some common techniques regarding vectors and loops:</p>
-<pre class="r"><code>vect &lt;- 1:25        # Quick way to create a vector of all numbers from 1 to 50 
+<pre class="r"><code>vect &lt;- 1:20        # Quick way to create a vector of all numbers from 1 to 20
 vect</code></pre>
-<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
 <pre class="r"><code># Using a loop
-vect &lt;- c()                      # Initialize an empty vector, c is the letter used, I have no clue why
-for(i in 1:25){        
+vect &lt;- c()                      # Initialize an empty vector, c is the letter used for vector, no clue why
+for(i in 1:20){        
   vect[i] &lt;- i                   # Load the vector
 }
 vect</code></pre>
-<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
 <pre class="r"><code># Adding up all the numbers in vect
 sum &lt;- 0
-for (i in 1:length(vect)){        # this is a really common loop setup for traversing an existing vector 
-  sum &lt;- sum + vect[i]
+for (i in 1:length(vect)){        # Using length() is a really common technique for traversing an existing vector
+  sum &lt;- sum + vect[i]            
 }
 sum</code></pre>
-<pre><code>## [1] 325</code></pre>
+<pre><code>## [1] 210</code></pre>
 <pre class="r"><code>sum(vect)           # Or using the sum function</code></pre>
-<pre><code>## [1] 325</code></pre>
+<pre><code>## [1] 210</code></pre>
 <pre class="r"><code># Getting the maximum value from &quot;vect&quot;
 max &lt;- -Inf                       # I choose the lowest number possible
 for (i in 1:length(vect)){        
@@ -1725,28 +1725,30 @@ for (i in 1:length(vect)){
   }
 }
 max</code></pre>
-<pre><code>## [1] 25</code></pre>
+<pre><code>## [1] 20</code></pre>
 <pre class="r"><code>max(vect)         # Or using the max function</code></pre>
-<pre><code>## [1] 25</code></pre>
+<pre><code>## [1] 20</code></pre>
 </div>
 <div id="question-3" class="section level3">
 <h3>Question 3</h3>
 <p>R is also pretty smart about performing math on vectors or other large structures. This is a REALLY important (and also confusing) topic in R.</p>
 <pre class="r"><code>vect          # Vect is still saved in memory from the previous cell!</code></pre>
-<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</code></pre>
 <pre class="r"><code>vect * 2 </code></pre>
-<pre><code>##  [1]  2  4  6  8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46 48 50</code></pre>
+<pre><code>##  [1]  2  4  6  8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40</code></pre>
 <pre class="r"><code>1/vect</code></pre>
 <pre><code>##  [1] 1.00000000 0.50000000 0.33333333 0.25000000 0.20000000 0.16666667
 ##  [7] 0.14285714 0.12500000 0.11111111 0.10000000 0.09090909 0.08333333
 ## [13] 0.07692308 0.07142857 0.06666667 0.06250000 0.05882353 0.05555556
-## [19] 0.05263158 0.05000000 0.04761905 0.04545455 0.04347826 0.04166667
-## [25] 0.04000000</code></pre>
+## [19] 0.05263158 0.05000000</code></pre>
 <pre class="r"><code>log(vect)</code></pre>
 <pre><code>##  [1] 0.0000000 0.6931472 1.0986123 1.3862944 1.6094379 1.7917595 1.9459101
 ##  [8] 2.0794415 2.1972246 2.3025851 2.3978953 2.4849066 2.5649494 2.6390573
-## [15] 2.7080502 2.7725887 2.8332133 2.8903718 2.9444390 2.9957323 3.0445224
-## [22] 3.0910425 3.1354942 3.1780538 3.2188758</code></pre>
+## [15] 2.7080502 2.7725887 2.8332133 2.8903718 2.9444390 2.9957323</code></pre>
+<pre class="r"><code>log(vect) + 5</code></pre>
+<pre><code>##  [1] 5.000000 5.693147 6.098612 6.386294 6.609438 6.791759 6.945910 7.079442
+##  [9] 7.197225 7.302585 7.397895 7.484907 7.564949 7.639057 7.708050 7.772589
+## [17] 7.833213 7.890372 7.944439 7.995732</code></pre>
 <p>Here’s a relevant example:</p>
 <pre class="r"><code>myVector &lt;- 1 / (1:500)         # This vector is massive, so I display only the first 20 results using head()
 head(myVector, 20)</code></pre>
@@ -1757,9 +1759,9 @@ head(myVector, 20)</code></pre>
 <pre class="r"><code>sum(myVector)                   # the sum from i=1 to 500 of 1/i (hint)</code></pre>
 <pre><code>## [1] 6.792823</code></pre>
 <pre class="r"><code># Load the vector 
-N &lt;- c(5, 10, 20, 40, 80)
+N &lt;- c(500, 1000, 2000, 4000, 8000)
 
-# A loop might help in solving this question
+# A loop might help here!
 results &lt;- c()
 for (i in 1:length(N)){
   results[i] # &lt;- SOMETHING      ## Calculate something using N[i] to fill the &quot;results&quot; vector 
@@ -1767,14 +1769,14 @@ for (i in 1:length(N)){
 </div>
 <div id="question-4-matrix" class="section level3">
 <h3>Question 4 : Matrix</h3>
-<pre class="r"><code>mat &lt;- matrix(nrow=4, ncol=8)     # Initialize an empty matrix 
+<pre class="r"><code>mat &lt;- matrix(nrow=4, ncol=8)     # Initialize an empty matrix (heads up, not the correct dimensions)
 mat</code></pre>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
 ## [1,]   NA   NA   NA   NA   NA   NA   NA   NA
 ## [2,]   NA   NA   NA   NA   NA   NA   NA   NA
 ## [3,]   NA   NA   NA   NA   NA   NA   NA   NA
 ## [4,]   NA   NA   NA   NA   NA   NA   NA   NA</code></pre>
-<pre class="r"><code># Load the 2nd column      ## Notice that R is ALWAYS &quot;row,column&quot; (for other things too)
+<pre class="r"><code># Load the 2nd column      ## Notice that R is ALWAYS [row,column] (for other things too)
 mat[,2] &lt;- c(1,2,3,4)      ## Leaving a row or column empty signifies all
 mat</code></pre>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
@@ -1802,7 +1804,6 @@ mat             </code></pre>
 <h3>Question 5</h3>
 <p>Data frames are probably the most important structure in all of R. They’re insanely useful. They are kind of like a matrix where each column can hold a different type of data (matrix is all numeric I believe). The same “row,column” format applies to data frames too.</p>
 <pre class="r"><code>data(&quot;Formaldehyde&quot;)      # This is used to load the formaldehyde data frame
-
 class(Formaldehyde)       # Just showing its a DF</code></pre>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 <pre class="r"><code>Formaldehyde</code></pre>
@@ -1813,12 +1814,63 @@ class(Formaldehyde)       # Just showing its a DF</code></pre>
 </div>
 <p>Referencing stuff in a data frame:</p>
 <pre class="r"><code># Many different ways
-Formaldehyde$optden         # $ operator</code></pre>
+Formaldehyde$optden         # Using the &quot;$&quot; operator</code></pre>
 <pre><code>## [1] 0.086 0.269 0.446 0.538 0.626 0.782</code></pre>
 <pre class="r"><code>Formaldehyde[,2]            # Entire 2nd column           </code></pre>
 <pre><code>## [1] 0.086 0.269 0.446 0.538 0.626 0.782</code></pre>
-<pre class="r"><code>Formaldehyde[,&#39;optden&#39;]     # Entire &quot;optden&quot; colum     # Notice that all 3 ways are equivalent</code></pre>
+<pre class="r"><code>Formaldehyde[,&#39;optden&#39;]     # Entire &quot;optden&quot; colum     # Notice that all 3 ways are exactly the same</code></pre>
 <pre><code>## [1] 0.086 0.269 0.446 0.538 0.626 0.782</code></pre>
+<pre class="r"><code>Formaldehyde[4,]            # Entire 4th row</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["carb"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["optden"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.6","2":"0.538","_rn_":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="question-6-7" class="section level3">
+<h3>Question 6 &amp; 7</h3>
+<p>The use of boolean vectors in R is extremely powerful. By boolean vector, I mean a vector of True/False values.</p>
+<pre class="r"><code>1:50 %% 2 == 0           # An example of a boolean vector </code></pre>
+<pre><code>##  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE
+## [13] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE
+## [25] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE
+## [37] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE
+## [49] FALSE  TRUE</code></pre>
+<pre class="r"><code>library(MASS)               # This data frame is only found in the MASS package, so I need to import it 
+data(&quot;Pima.tr&quot;)             # Data() is used to retrieve a data source
+head(Pima.tr)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["npreg"],"name":[1],"type":["int"],"align":["right"]},{"label":["glu"],"name":[2],"type":["int"],"align":["right"]},{"label":["bp"],"name":[3],"type":["int"],"align":["right"]},{"label":["skin"],"name":[4],"type":["int"],"align":["right"]},{"label":["bmi"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["ped"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["age"],"name":[7],"type":["int"],"align":["right"]},{"label":["type"],"name":[8],"type":["fct"],"align":["left"]}],"data":[{"1":"5","2":"86","3":"68","4":"28","5":"30.2","6":"0.364","7":"24","8":"No","_rn_":"1"},{"1":"7","2":"195","3":"70","4":"33","5":"25.1","6":"0.163","7":"55","8":"Yes","_rn_":"2"},{"1":"5","2":"77","3":"82","4":"41","5":"35.8","6":"0.156","7":"35","8":"No","_rn_":"3"},{"1":"0","2":"165","3":"76","4":"43","5":"47.9","6":"0.259","7":"26","8":"No","_rn_":"4"},{"1":"0","2":"107","3":"60","4":"25","5":"26.4","6":"0.133","7":"23","8":"No","_rn_":"5"},{"1":"5","2":"97","3":"76","4":"27","5":"35.6","6":"0.378","7":"52","8":"Yes","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>Pima.tr$age &gt; 40  # This boolean has the same number of entries as the number of rows in Pima.tr</code></pre>
+<pre><code>##   [1] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE
+##  [13]  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE
+##  [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+##  [37] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [49] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+##  [61]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [73]  TRUE FALSE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE
+##  [85] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE
+##  [97] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+## [109] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE
+## [121] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE
+## [133]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [145] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
+## [157]  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+## [169] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+## [181] FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE
+## [193] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE</code></pre>
+<p>When I plug this boolean vector into the “row” field of the data frame, it selects all the rows corresponding to “True” in the vector. Crazy right?</p>
+<pre class="r"><code>myBool &lt;- Pima.tr$age &gt; 40
+Pima.tr[myBool,]         # Remember [row,column]</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["npreg"],"name":[1],"type":["int"],"align":["right"]},{"label":["glu"],"name":[2],"type":["int"],"align":["right"]},{"label":["bp"],"name":[3],"type":["int"],"align":["right"]},{"label":["skin"],"name":[4],"type":["int"],"align":["right"]},{"label":["bmi"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["ped"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["age"],"name":[7],"type":["int"],"align":["right"]},{"label":["type"],"name":[8],"type":["fct"],"align":["left"]}],"data":[{"1":"7","2":"195","3":"70","4":"33","5":"25.1","6":"0.163","7":"55","8":"Yes","_rn_":"2"},{"1":"5","2":"97","3":"76","4":"27","5":"35.6","6":"0.378","7":"52","8":"Yes","_rn_":"6"},{"1":"3","2":"142","3":"80","4":"15","5":"32.4","6":"0.200","7":"63","8":"No","_rn_":"9"},{"1":"9","2":"154","3":"78","4":"30","5":"30.9","6":"0.164","7":"45","8":"No","_rn_":"12"},{"1":"1","2":"189","3":"60","4":"23","5":"30.1","6":"0.398","7":"59","8":"Yes","_rn_":"13"},{"1":"12","2":"92","3":"62","4":"7","5":"27.6","6":"0.926","7":"44","8":"Yes","_rn_":"14"},{"1":"11","2":"143","3":"94","4":"33","5":"36.6","6":"0.254","7":"51","8":"Yes","_rn_":"18"},{"1":"1","2":"149","3":"68","4":"29","5":"29.3","6":"0.349","7":"42","8":"Yes","_rn_":"19"},{"1":"1","2":"100","3":"66","4":"29","5":"32.0","6":"0.444","7":"42","8":"No","_rn_":"22"},{"1":"13","2":"145","3":"82","4":"19","5":"22.2","6":"0.245","7":"57","8":"No","_rn_":"36"},{"1":"8","2":"176","3":"90","4":"34","5":"33.7","6":"0.467","7":"58","8":"Yes","_rn_":"41"},{"1":"8","2":"154","3":"78","4":"32","5":"32.4","6":"0.443","7":"45","8":"Yes","_rn_":"53"},{"1":"8","2":"167","3":"106","4":"46","5":"37.6","6":"0.165","7":"43","8":"Yes","_rn_":"60"},{"1":"7","2":"184","3":"84","4":"33","5":"35.5","6":"0.355","7":"41","8":"Yes","_rn_":"61"},{"1":"6","2":"92","3":"62","4":"32","5":"32.0","6":"0.085","7":"46","8":"No","_rn_":"64"},{"1":"8","2":"181","3":"68","4":"36","5":"30.1","6":"0.615","7":"60","8":"Yes","_rn_":"73"},{"1":"1","2":"168","3":"88","4":"29","5":"35.0","6":"0.905","7":"52","8":"Yes","_rn_":"75"},{"1":"1","2":"144","3":"82","4":"46","5":"46.1","6":"0.335","7":"46","8":"Yes","_rn_":"76"},{"1":"12","2":"121","3":"78","4":"17","5":"26.5","6":"0.259","7":"62","8":"No","_rn_":"80"},{"1":"6","2":"125","3":"78","4":"31","5":"27.6","6":"0.565","7":"49","8":"Yes","_rn_":"83"},{"1":"10","2":"125","3":"70","4":"26","5":"31.1","6":"0.205","7":"41","8":"Yes","_rn_":"84"},{"1":"7","2":"150","3":"78","4":"29","5":"35.2","6":"0.692","7":"54","8":"Yes","_rn_":"93"},{"1":"12","2":"140","3":"82","4":"43","5":"39.2","6":"0.528","7":"58","8":"Yes","_rn_":"96"},{"1":"10","2":"148","3":"84","4":"48","5":"37.6","6":"1.001","7":"51","8":"Yes","_rn_":"100"},{"1":"3","2":"61","3":"82","4":"28","5":"34.4","6":"0.243","7":"46","8":"No","_rn_":"101"},{"1":"6","2":"103","3":"72","4":"32","5":"37.7","6":"0.324","7":"55","8":"No","_rn_":"106"},{"1":"8","2":"124","3":"76","4":"24","5":"28.7","6":"0.687","7":"52","8":"Yes","_rn_":"114"},{"1":"0","2":"137","3":"84","4":"27","5":"27.3","6":"0.231","7":"59","8":"No","_rn_":"116"},{"1":"5","2":"144","3":"82","4":"26","5":"32.0","6":"0.452","7":"58","8":"Yes","_rn_":"125"},{"1":"1","2":"120","3":"80","4":"48","5":"38.9","6":"1.162","7":"41","8":"No","_rn_":"129"},{"1":"7","2":"187","3":"68","4":"39","5":"37.7","6":"0.254","7":"41","8":"Yes","_rn_":"130"},{"1":"7","2":"179","3":"95","4":"31","5":"34.2","6":"0.164","7":"60","8":"No","_rn_":"132"},{"1":"6","2":"80","3":"66","4":"30","5":"26.2","6":"0.313","7":"41","8":"No","_rn_":"133"},{"1":"8","2":"85","3":"55","4":"20","5":"24.4","6":"0.136","7":"42","8":"No","_rn_":"150"},{"1":"12","2":"88","3":"74","4":"40","5":"35.3","6":"0.378","7":"48","8":"No","_rn_":"151"},{"1":"2","2":"197","3":"70","4":"99","5":"34.7","6":"0.575","7":"62","8":"Yes","_rn_":"157"},{"1":"1","2":"164","3":"82","4":"43","5":"32.8","6":"0.341","7":"50","8":"No","_rn_":"163"},{"1":"7","2":"194","3":"68","4":"28","5":"35.9","6":"0.745","7":"41","8":"Yes","_rn_":"173"},{"1":"9","2":"57","3":"80","4":"37","5":"32.8","6":"0.096","7":"41","8":"No","_rn_":"179"},{"1":"12","2":"140","3":"85","4":"33","5":"37.4","6":"0.244","7":"41","8":"No","_rn_":"182"},{"1":"8","2":"100","3":"74","4":"40","5":"39.4","6":"0.661","7":"43","8":"Yes","_rn_":"184"},{"1":"14","2":"100","3":"78","4":"25","5":"36.6","6":"0.412","7":"46","8":"Yes","_rn_":"187"},{"1":"1","2":"133","3":"102","4":"28","5":"32.8","6":"0.234","7":"45","8":"Yes","_rn_":"190"},{"1":"7","2":"129","3":"68","4":"49","5":"38.5","6":"0.439","7":"43","8":"Yes","_rn_":"197"},{"1":"8","2":"155","3":"62","4":"26","5":"34.0","6":"0.543","7":"46","8":"Yes","_rn_":"200"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Anyways, I hope that helped! I figured I’d do this because I think learning the basics of R without any reference material would suck major butt (I got major help from a post-doc researcher in my lab). Cheers!</p>
 </div>
 
 

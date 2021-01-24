@@ -20,26 +20,26 @@ First, you'll need to get comfortable searching up function help pages. All you 
 ```{r}
 ?rnorm
 ```
-So, what does `rnorm(100)` do? It randomly draws 100 numbers from a normal distribution (got that from the help page)
+There's some real good documentation online too if the manuals aren't clear. So, what does `rnorm(100)` do? It randomly draws 100 numbers from a normal distribution (got that from the help page). 
 
 ### Question 2
 
 Here are some common techniques regarding vectors and loops:
 ```{r}
-vect <- 1:25        # Quick way to create a vector of all numbers from 1 to 50 
+vect <- 1:20        # Quick way to create a vector of all numbers from 1 to 20
 vect
 
 # Using a loop
-vect <- c()                      # Initialize an empty vector, c is the letter used, I have no clue why
-for(i in 1:25){        
+vect <- c()                      # Initialize an empty vector, c is the letter used for vector, no clue why
+for(i in 1:20){        
   vect[i] <- i                   # Load the vector
 }
 vect
 
 # Adding up all the numbers in vect
 sum <- 0
-for (i in 1:length(vect)){        # this is a really common loop setup for traversing an existing vector 
-  sum <- sum + vect[i]
+for (i in 1:length(vect)){        # Using length() is a really common technique for traversing an existing vector
+  sum <- sum + vect[i]            
 }
 sum
 
@@ -70,6 +70,8 @@ vect * 2
 1/vect
 
 log(vect)
+
+log(vect) + 5
 ```
 
 Here's a relevant example:
@@ -80,9 +82,9 @@ head(myVector, 20)
 sum(myVector)                   # the sum from i=1 to 500 of 1/i (hint)
 
 # Load the vector 
-N <- c(5, 10, 20, 40, 80)
+N <- c(500, 1000, 2000, 4000, 8000)
 
-# A loop might help in solving this question
+# A loop might help here!
 results <- c()
 for (i in 1:length(N)){
   results[i] # <- SOMETHING      ## Calculate something using N[i] to fill the "results" vector 
@@ -96,10 +98,10 @@ for (i in 1:length(N)){
 ### Question 4 : Matrix 
 
 ```{r} 
-mat <- matrix(nrow=4, ncol=8)     # Initialize an empty matrix 
+mat <- matrix(nrow=4, ncol=8)     # Initialize an empty matrix (heads up, not the correct dimensions)
 mat
 
-# Load the 2nd column      ## Notice that R is ALWAYS "row,column" (for other things too)
+# Load the 2nd column      ## Notice that R is ALWAYS [row,column] (for other things too)
 mat[,2] <- c(1,2,3,4)      ## Leaving a row or column empty signifies all
 mat
 
@@ -125,14 +127,13 @@ They are kind of like a matrix where each column can hold a different type of da
 The same "row,column" format applies to data frames too.
 ```{r}
 data("Formaldehyde")      # This is used to load the formaldehyde data frame
-
 class(Formaldehyde)       # Just showing its a DF
 Formaldehyde
 ```
 Referencing stuff in a data frame:
 ```{r}
 # Many different ways
-Formaldehyde$optden         # $ operator
+Formaldehyde$optden         # Using the "$" operator
 Formaldehyde[,2]            # Entire 2nd column           
 Formaldehyde[,'optden']     # Entire "optden" colum     # Notice that all 3 ways are exactly the same
 
@@ -141,8 +142,23 @@ Formaldehyde[4,]            # Entire 4th row
 ```
 
 ### Question 6 & 7 
-R enabl
+The use of boolean vectors in R is extremely powerful. By boolean vector, I mean a vector of True/False values.
 ```{r}
-
+1:50 %% 2 == 0           # An example of a boolean vector 
 ```
 
+
+```{r}
+library(MASS)               # This data frame is only found in the MASS package, so I need to import it 
+data("Pima.tr")             # Data() is used to retrieve a data source
+head(Pima.tr)
+
+Pima.tr$age > 40  # This boolean has the same number of entries as the number of rows in Pima.tr
+```
+
+When I plug this boolean vector into the "row" field of the data frame, it selects all the rows corresponding to "True" in the vector. Crazy right?
+```{r}
+myBool <- Pima.tr$age > 40
+Pima.tr[myBool,]         # Remember [row,column]
+```
+Anyways, I hope that helped! I figured I'd do this because I think learning the basics of R without any reference material would suck major butt (I got major help from a post-doc researcher in my lab). Cheers!
