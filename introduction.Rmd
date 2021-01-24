@@ -1,5 +1,5 @@
 ---
-title: "introduction"
+title: "R Intro"
 author: "John Palmer"
 date: "23/01/2021"
 output:
@@ -12,59 +12,17 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Introduction
-Hey! Figured I'd create this because there was genuinely no introduction to base R usage in our course. I figured this might be easier than typing a big long text explanation. As an alternative, you can also read through the lengthier R markdown tutorial at [this link](https://rmarkdown.rstudio.com/lesson-1.html) if you want.
+Hey! Figured I'd create this because there was genuinely no introduction to base R usage in our course. I figured this might be easier than typing a big long text explanation. Here, I'll try and show you the tools I used to answer the questions.
 
-### R Markdown
-
-I'll briefly introduce R Markdown (Rmd; the format you're viewing this in). 
-If you already feel comfortable, by all means skip to the `Assignment` section. 
-So, what's the point of it? Rmd allows you to generate documents that seamlessly combine text with snippets of code. 
-To view the fully formatted document, click "knit" at the top of RStudio (makes for some nice reading).
-Also, HTML format should always work, while PDF might require LaTeX to be installed. 
-
-Without any special formatting, the default format is standard text like what I'm writing in this sentence. 
-Now this "standard text" is actually markdown language, meaning there are various symbols I can use to control text formatting. 
-You probably already picked up on my use of titles (more `#` symbols means smaller) and paragraphs (every empty line starts a new one). 
-Some of this stuff isn't that important, like **bolding**, *italics*, etc., so I'll just leave [this link](https://www.markdownguide.org/basic-syntax/) in case you want to learn more.
-
-
-To complete the assignment, the actual code formatting is what you really want. 
-Definitely the most important is triple backquotes (not single or double quotes, it's the symbol on the same key as the tilde (~) symbol). 
-The first three quotes mark the start, and the second three mark the end (meaning you can add/remove cells if needed).
-
-```
-like this
-```
-But what I wrote is only recognized as plain text, because Rmd needs to know what language you're using.
-This is why you see `{r}` next to the starting backquotes (so that it recognizes it as R code). 
-When you include this, it also includes a built-in "run" button (little green play button) next to the cell. 
-Really handy to check your result for a single cell. 
-
-```{r highlevelmath}
-num1 <- 17
-num2 <- 4
-num1 + num2
-```
-
-In the above cell, the first "r" tells it to expect R code, and the word "highlevelmath" after is just a label.
-
-You can also write "inline" code using single backquotes. 
-Same as before, if you specify the "r" flag, you can run R code like this: `r 2*3`, or even using variables `r myvariable = 27` that Rmd remembers: `r myvariable + 3`.
-Without the "r" flag, it will not run as code, but it's still quite handy for emphasizing a variable or name, like this: `hey im important`.
-
-
-### Assignment
-
-#### Question 1
+### Question 1
 First, you'll need to get comfortable searching up function help pages. All you need to do is throw a `?` in front of the function you want to learn more about. 
 
 ```{r}
 ?rnorm
 ```
-So, what does `rnorm` do? It generates 100 numbers randomly drawn from a normal distribution (got that straight from the help page)
+So, what does `rnorm(100)` do? It randomly draws 100 numbers from a normal distribution (got that from the help page)
 
-#### Question 2
+### Question 2
 
 Here are some common techniques regarding vectors and loops:
 ```{r}
@@ -72,7 +30,7 @@ vect <- 1:25        # Quick way to create a vector of all numbers from 1 to 50
 vect
 
 # Using a loop
-vect <- c()                      # Initialize an empty vector 
+vect <- c()                      # Initialize an empty vector, c is the letter used, I have no clue why
 for(i in 1:25){        
   vect[i] <- i                   # Load the vector
 }
@@ -105,6 +63,8 @@ max(vect)         # Or using the max function
 R is also pretty smart about performing math on vectors or other large structures. 
 This is a REALLY important (and also confusing) topic in R. 
 ```{r}
+vect          # Vect is still saved in memory from the previous cell!
+
 vect * 2 
 
 1/vect
@@ -117,18 +77,17 @@ Here's a relevant example:
 myVector <- 1 / (1:500)         # This vector is massive, so I display only the first 20 results using head()
 head(myVector, 20)
 
-sum(myVector)                   # the sum from i=1 to 500 of 1/i
+sum(myVector)                   # the sum from i=1 to 500 of 1/i (hint)
 
-# A loop might help here
+# Load the vector 
 N <- c(5, 10, 20, 40, 80)
-results <- c()
 
+# A loop might help in solving this question
+results <- c()
 for (i in 1:length(N)){
-  results[i] # <- SOMETHING      ## Use the above lines, and N[i], to fill the "results" vector  
+  results[i] # <- SOMETHING      ## Calculate something using N[i] to fill the "results" vector 
 }
 
-log(N) 
-log(N) + 3
 
 ```
 
@@ -175,6 +134,15 @@ Referencing stuff in a data frame:
 # Many different ways
 Formaldehyde$optden         # $ operator
 Formaldehyde[,2]            # Entire 2nd column           
-Formaldehyde[,'optden']     # Entire "optden" colum     # Notice that all 3 ways are equivalent
+Formaldehyde[,'optden']     # Entire "optden" colum     # Notice that all 3 ways are exactly the same
+
+Formaldehyde[4,]            # Entire 4th row
+
+```
+
+### Question 6 & 7 
+R enabl
+```{r}
+
 ```
 
