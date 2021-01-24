@@ -38,6 +38,8 @@ like this
 ```
 But what I wrote is only recognized as plain text, because Rmd needs to know what language you're using.
 This is why you see `{r}` next to the starting backquotes (so that it recognizes it as R code). 
+When you include this, it also includes a built-in "run" button (little green play button) next to the cell. 
+Really handy to check your result for a single cell. 
 
 ```{r highlevelmath}
 num1 <- 17
@@ -45,27 +47,134 @@ num2 <- 4
 num1 + num2
 ```
 
-Specifically, the first "r" tells it to expect R code, and the word "highlevelmath" after is just a label.
-In case you haven't seen it, the green 
+In the above cell, the first "r" tells it to expect R code, and the word "highlevelmath" after is just a label.
 
-You can also write code on the same line as text using single backquotes. 
-Same as before, if you specify the "r" flag, you can also run R code like this: `r 2*3`, or even using variables: `r myvariable = 27` `r myvariable + 3`.
-Without the "r" flag, it is still quite handy for emphasizing a variable or name, like this: `hey im important`.
+You can also write "inline" code using single backquotes. 
+Same as before, if you specify the "r" flag, you can run R code like this: `r 2*3`, or even using variables `r myvariable = 27` that Rmd remembers: `r myvariable + 3`.
+Without the "r" flag, it will not run as code, but it's still quite handy for emphasizing a variable or name, like this: `hey im important`.
 
 
 ### Assignment
 
-First, searching up function help pages is essential. All you need to do is throw a `?` in front of the function you want to learn more about. 
+#### Question 1
+First, you'll need to get comfortable searching up function help pages. All you need to do is throw a `?` in front of the function you want to learn more about. 
 
 ```{r}
-?qqnorm()
+?rnorm
+```
+So, what does `rnorm` do? It generates 100 numbers randomly drawn from a normal distribution (got that straight from the help page)
+
+#### Question 2
+
+Here are some common techniques regarding vectors and loops:
+```{r}
+vect <- 1:25        # Quick way to create a vector of all numbers from 1 to 50 
+vect
+
+# Using a loop
+vect <- c()                      # Initialize an empty vector 
+for(i in 1:25){        
+  vect[i] <- i                   # Load the vector
+}
+vect
+
+# Adding up all the numbers in vect
+sum <- 0
+for (i in 1:length(vect)){        # this is a really common loop setup for traversing an existing vector 
+  sum <- sum + vect[i]
+}
+sum
+
+sum(vect)           # Or using the sum function
+
+# Getting the maximum value from "vect"
+max <- -Inf                       # I choose the lowest number possible
+for (i in 1:length(vect)){        
+  if (vect[i] > max){
+    max <- vect[i]
+  }
+}
+max
+
+max(vect)         # Or using the max function
+
 ```
 
 
-You can also embed plots, for example:
+### Question 3 
+R is also pretty smart about performing math on vectors or other large structures. 
+This is a REALLY important (and also confusing) topic in R. 
+```{r}
+vect * 2 
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+1/vect
+
+log(vect)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Here's a relevant example:
+```{r}
+myVector <- 1 / (1:500)         # This vector is massive, so I display only the first 20 results using head()
+head(myVector, 20)
+
+sum(myVector)                   # the sum from i=1 to 500 of 1/i
+
+# A loop might help here
+N <- c(5, 10, 20, 40, 80)
+results <- c()
+
+for (i in 1:length(N)){
+  results[i] # <- SOMETHING      ## Use the above lines, and N[i], to fill the "results" vector  
+}
+
+log(N) 
+log(N) + 3
+
+```
+
+
+
+### Question 4 : Matrix 
+
+```{r} 
+mat <- matrix(nrow=4, ncol=8)     # Initialize an empty matrix 
+mat
+
+# Load the 2nd column      ## Notice that R is ALWAYS "row,column" (for other things too)
+mat[,2] <- c(1,2,3,4)      ## Leaving a row or column empty signifies all
+mat
+
+# Load the 3rd row
+mat[3,] <- 8:1           
+mat             
+```
+Here I'll just throw in some examples of `rep()`.
+The two key arguments you need are `times` and `each`. 
+`times` tells you how many times the whole vector gets repeated. 
+`each` tells you how many times each individual element within the vector gets repeated. 
+```{r rep}
+rep(c(1,2), times=4)      # Times
+
+rep(c(1,0), each=4)       # Each
+
+rep(c(2,4), each=4, times=2)    # Both
+```
+
+### Question 5
+Data frames are probably the most important structure in all of R. They're insanely useful.
+They are kind of like a matrix where each column can hold a different type of data (matrix is all numeric I believe).
+The same "row,column" format applies to data frames too.
+```{r}
+data("Formaldehyde")      # This is used to load the formaldehyde data frame
+
+class(Formaldehyde)       # Just showing its a DF
+Formaldehyde
+```
+Referencing stuff in a data frame:
+```{r}
+# Many different ways
+Formaldehyde$optden         # $ operator
+Formaldehyde[,2]            # Entire 2nd column           
+Formaldehyde[,'optden']     # Entire "optden" colum     # Notice that all 3 ways are equivalent
+```
+
