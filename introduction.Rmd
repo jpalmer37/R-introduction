@@ -1,11 +1,10 @@
 ---
-title: "R Intro"
+title: "R Introduction"
 author: "John Palmer"
 date: "23/01/2021"
 output:
   html_document:
     df_print: paged
-  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -32,7 +31,7 @@ vect
 # Using a loop
 vect <- c()                      # Initialize an empty vector, c is the letter used for vector, no clue why
 for(i in 1:20){        
-  vect[i] <- i                   # Load the vector
+  vect[i] <- i                   # Load each element of the vector
 }
 vect
 
@@ -95,7 +94,7 @@ for (i in 1:length(N)){
 
 
 
-### Question 4 : Matrix 
+### Question 4
 
 ```{r} 
 mat <- matrix(nrow=4, ncol=8)     # Initialize an empty matrix (heads up, not the correct dimensions)
@@ -150,7 +149,7 @@ The use of boolean vectors in R is extremely powerful. By boolean vector, I mean
 
 ```{r}
 library(MASS)               # This data frame is only found in the MASS package, so I need to import it 
-data("Pima.tr")             # Data() is used to retrieve a data source
+data("Pima.tr")            
 head(Pima.tr)
 
 Pima.tr$age > 40  # This boolean has the same number of entries as the number of rows in Pima.tr
